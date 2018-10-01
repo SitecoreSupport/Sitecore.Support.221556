@@ -1,7 +1,10 @@
 ﻿using Sitecore;
+using Sitecore.Analytics.Model.Entities;
 using Sitecore.Analytics.Model.Framework;
 using Sitecore.Analytics.Tracking;
 using Sitecore.Configuration;
+using Sitecore.Data;
+using Sitecore.Data.Items;
 using Sitecore.Diagnostics;
 using Sitecore.WFFM.Abstractions.Analytics;
 using Sitecore.Xml;
@@ -11,7 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 
-namespace Sitecore.WFFM.Analytics
+namespace Sitecore.Support.WFFM.Analytics
 {
   public class ContactFacetFactory : IContactFacetFactory
   {
@@ -141,7 +144,32 @@ namespace Sitecore.WFFM.Analytics
       }
       if (modelMember is IModelAttributeMember)
       {
-        SetAttribute(facet, modelMember.Name, value, overwrite);
+        //SetAttribute(facet, modelMember.Name, value, overwrite);
+        if (facet is IContactPicture && modelMember.Name == "MimeType")
+        {
+          return;
+        }
+        else if (facet is IContactPicture && modelMember.Name == "Picture")
+        {
+          var mediaItem = new MediaItem(Database.GetItem(ItemUri.Parse(value)));
+
+          var mediaStream = mediaItem.GetMediaStream();
+
+          long fileSize = mediaStream.Length;
+
+          byte[] buffer = new byte[(int)fileSize];
+
+          mediaStream.Read(buffer, 0, (int)mediaStream.Length);
+
+          mediaStream.Close();
+
+          (facet as IContactPicture).Picture = buffer;
+          (facet as IContactPicture).MimeType = mediaItem.MimeType;
+        }
+        else
+        {
+          SetAttribute(facet, modelMember.Name, value, overwrite);
+        }
       }
       if (modelMember is IModelElementMember)
       {

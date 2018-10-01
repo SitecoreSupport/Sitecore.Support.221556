@@ -9,10 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
 
-namespace Sitecore.WFFM.Actions.SaveActions
+namespace Sitecore.Support.WFFM.Actions.SaveActions
 {
   [Required("IsXdbTrackerEnabled", true)]
-  public class UpdateContactDetails : WffmSaveAction
+  public partial class UpdateContactDetails : WffmSaveAction
   {
     private readonly IAnalyticsTracker analyticsTracker;
 
@@ -56,12 +56,16 @@ namespace Sitecore.WFFM.Actions.SaveActions
       }
       else
       {
-        IEnumerable<FacetNode> enumerable = ParseMapping(Mapping, fields);
+        //IEnumerable<FacetNode> enumerable = ParseMapping(Mapping, fields);
+        IEnumerable<FacetNode> enumerable = ParseMapping(Mapping, fields).ToList();
         IContactFacetFactory contactFacetFactory = facetFactory.GetContactFacetFactory();
         foreach (FacetNode item in enumerable)
         {
           contactFacetFactory.SetFacetValue(analyticsTracker.CurrentContact, item.Key, item.Path, item.Value, true);
         }
+
+        var facetSetter = new XConnectFacetSetter(this.analyticsTracker, enumerable);
+        facetSetter.Execute();
       }
     }
 

@@ -50,24 +50,53 @@
       <HintPath>..\packages\SC.Sitecore.Analytics.Model.9.0.2\lib\Sitecore.Analytics.Model.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sitecore.Forms.Core, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.Forms.Core.9.0.2\lib\Sitecore.Forms.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.Forms.Custom, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.Forms.Custom.9.0.2\lib\Sitecore.Forms.Custom.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\packages\SC.Sitecore.Kernel.9.0.2\lib\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.WFFM">
-      <HintPath>..\..\bin\Sitecore.WFFM.dll</HintPath>
+    <Reference Include="Sitecore.WFFM, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.9.0.2\lib\Sitecore.WFFM.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.WFFM.Abstractions">
-      <HintPath>..\..\bin\Sitecore.WFFM.Abstractions.dll</HintPath>
+    <Reference Include="Sitecore.WFFM.Abstractions, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.Abstractions.9.0.2\lib\Sitecore.WFFM.Abstractions.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.WFFM.Actions">
-      <HintPath>..\..\bin\Sitecore.WFFM.Actions.dll</HintPath>
+    <Reference Include="Sitecore.WFFM.Actions, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.Actions.9.0.2\lib\Sitecore.WFFM.Actions.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.WFFM.Analytics">
-      <HintPath>..\..\bin\Sitecore.WFFM.Analytics.dll</HintPath>
+    <Reference Include="Sitecore.WFFM.Analytics, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.Analytics.9.0.2\lib\Sitecore.WFFM.Analytics.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.WFFM.Services">
-      <HintPath>..\..\bin\Sitecore.WFFM.Services.dll</HintPath>
+    <Reference Include="Sitecore.WFFM.Services, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WFFM.Sitecore.WFFM.Services.9.0.2\lib\Sitecore.WFFM.Services.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.XConnect, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SC.Sitecore.XConnect.9.0.2\lib\Sitecore.XConnect.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.XConnect.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SC.Sitecore.XConnect.Client.9.0.2\lib\Sitecore.XConnect.Client.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.XConnect.Client.Configuration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SC.Sitecore.XConnect.Client.Configuration.9.0.2\lib\Sitecore.XConnect.Client.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.XConnect.Collection.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SC.Sitecore.XConnect.Collection.Model.9.0.2\lib\Sitecore.XConnect.Collection.Model.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -78,14 +107,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactFacetFactory.cs" />
+    <Compile Include="CreateUser.cs" />
+    <Compile Include="DefaultImplFacetFactory.cs" />
+    <Compile Include="LoginUserWithoutPassword.cs" />
+    <Compile Include="LoginUserWithPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpdateContactDetails.cs" />
+    <Compile Include="XConnectUtils\AddressesCopier.cs" />
+    <Compile Include="XConnectUtils\FacetMapper.cs" />
+    <Compile Include="XConnectUtils\CommunicationProfileCopier.cs" />
+    <Compile Include="XConnectUtils\EmailAddressesCopier.cs" />
+    <Compile Include="XConnectUtils\PersonalInfoCopier.cs" />
+    <Compile Include="XConnectUtils\PhoneNumbersCopier.cs" />
+    <Compile Include="XConnectUtils\PictureCopier.cs" />
+    <Compile Include="XConnectUtils\PreferencesCopier.cs" />
+    <Compile Include="XConnectUtils\XConnectFacetCopierFactory.cs" />
+    <Compile Include="XConnect\DefaultXConnectFacetCopier.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\zzz\Sitecore.Support.221556.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="UpdateContactDetails.XConnectFacetSetter.cs" />
     <None Include="web.config" />
   </ItemGroup>
   <PropertyGroup>
